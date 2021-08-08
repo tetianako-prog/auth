@@ -1,0 +1,17 @@
+.list {
+  list-style-type: none;
+  display: flex;
+}
+
+.item {
+  margin-right: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.activeLink {
+  color: red;
+}
