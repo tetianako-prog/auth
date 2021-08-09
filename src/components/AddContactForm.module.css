@@ -1,0 +1,19 @@
+.addForm {
+  width: 250px;
+}
+.label {
+  margin-right: 10px;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.addBtn {
+  display: block;
+  margin: 0 auto;
+}
+
+.error {
+  color: red;
+}

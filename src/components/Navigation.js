@@ -1,9 +1,9 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styles from './Navigation.module.css';
-import { useSelector } from 'react-redux';
-import { userSelector, userLogoutFetch } from '../reducers/users';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import styles from "./Navigation.module.css";
+import { useSelector } from "react-redux";
+import { userSelector, userLogoutFetch } from "../reducers/users";
+import { useDispatch } from "react-redux";
 
 const Navigation = () => {
   const { token, currentUser } = useSelector(userSelector);
@@ -37,14 +37,25 @@ const Navigation = () => {
           </NavLink>
         </li>
       )}
-      <li>
+      <li className={styles.item}>
         {token && (
           <span>
-            Welcome {currentUser}{' '}
+            Welcome {currentUser}{" "}
             <button type="button" onClick={logout}>
               Logout
             </button>
           </span>
+        )}
+      </li>
+      <li className={styles.item}>
+        {token && (
+          <NavLink
+            to="/contacts"
+            className={styles.link}
+            activeClassName={styles.activeLink}
+          >
+            Contacts
+          </NavLink>
         )}
       </li>
     </ul>
