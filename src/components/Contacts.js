@@ -30,8 +30,7 @@ const Contacts = () => {
   const changeFavorite = (id, favorite) => {
     dispatch(userChangeFavoriteContact(id, favorite));
   };
-  console.log(favoriteContacts);
-  console.log(notFavoriteContacts);
+
   return (
     <div>
       <h1>This is contacts page</h1>

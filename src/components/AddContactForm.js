@@ -16,13 +16,14 @@ const AddContactForm = () => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    dispatch(userAddContact(state));
-    setState(initialState);
-  };
-
   const { error } = useSelector(contactsSelector);
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    const res = await dispatch(userAddContact(state));
+    if (res.code === 201) {
+      setState(initialState);
+    }
+  };
 
   return (
     <>

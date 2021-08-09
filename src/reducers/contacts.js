@@ -106,6 +106,7 @@ export const userAddContact = (contact) => {
           } else {
             dispatch(setError(res.message));
           }
+          return res;
         })
         .catch((err) => console.log(err));
     }
