@@ -17,19 +17,12 @@ const App = () => {
     <div className={styles.wrapper}>
       <Navigation />
       <Switch>
-        {
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <div>
-                <h1>Home page</h1>
-              </div>
-            )}
-          />
-        }
-        {/* <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} /> */}
+        <Route
+          path="/"
+          exact
+          render={() => <h1>Hello, this is main page</h1>}
+        />
+        {/* <PrivateRoute exact path="/" redirectTo="/register" component={Home} /> */}
         <PrivateRoute
           path="/contacts"
           redirectTo="/login"

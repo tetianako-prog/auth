@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import AddContactForm from "./AddContactForm";
 import {
   userContactsFetch,
@@ -6,6 +6,7 @@ import {
   userChangeFavoriteContact,
   contactsSelector,
 } from "../reducers/contacts";
+import { userSelector, changeUserSubscription } from "../reducers/users";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Contacts.module.css";
 
@@ -13,6 +14,7 @@ const Contacts = () => {
   const dispatch = useDispatch();
   useEffect(() => dispatch(userContactsFetch()), [dispatch]);
   const { contacts } = useSelector(contactsSelector);
+  const { subscription } = useSelector(userSelector);
   const removeContact = (id) => {
     dispatch(userRemoveContact(id));
   };
@@ -31,9 +33,32 @@ const Contacts = () => {
     dispatch(userChangeFavoriteContact(id, favorite));
   };
 
+  const [subscrState, setSubsctiptionState] = useState("starter");
+
+  const handleChange = (e) => {
+    setSubsctiptionState(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(changeUserSubscription({ subscription: subscrState }));
+  };
+
   return (
     <div>
       <h1>This is contacts page</h1>
+      <p>
+        Your subscription is <strong>{subscription}</strong>
+      </p>
+      <p>Change your subscription</p>
+      <form onSubmit={handleSubmit}>
+        <select value={subscrState} onChange={handleChange}>
+          <option value="starter">starter</option>
+          <option value="pro">pro</option>
+          <option value="business">business</option>
+        </select>
+        <button type="submit">Change</button>
+      </form>
       {contacts.length === 0 && <h3>You have no contacts yet</h3>}
       {favoriteContacts.length > 0 && (
         <>
